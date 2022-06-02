@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/mecatex/my_resume#readme",
   "dependencies": {
-    "nodemailer": "^6.7.5",
-    "nodemailer-mailjet-transport": "^1.0.4"
+    "dotenv": "^16.0.1",
+    "nodemailer": "^6.7.5"
   }
 }

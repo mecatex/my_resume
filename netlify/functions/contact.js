@@ -1,11 +1,20 @@
+const dotenv = require('dotenv')
+dotenv.config()
 const nodemailer = require('nodemailer')
-const mailjetTransport = require('nodemailer-mailjet-transport')
-const mailjet = nodemailer.createTransport(mailjetTransport({
+const transport = nodemailer.createTransport({
+  host: "in-v3.mailjet.com",
+  port: 587,
+  secure: false, // use TLS
   auth: {
-    apiKey: process.env.API_KEY,
-    apiSecret: process.env.API_SECRET
-  }
-}));
+    user: process.env.API_KEY,
+    pass: process.env.API_SECRET,
+  },
+  tls: {
+    // do not fail on invalid certs
+    rejectUnauthorized: false,
+  },
+});
+
 
 exports.handler = async function (event, context) {
 
@@ -21,7 +30,7 @@ exports.handler = async function (event, context) {
   };
 
   try {
-    const info = await mailjet.sendMail(mailer);
+    const info = await transport.sendMail(mailer);
     return {
       statusCode: 200,
       body: JSON.stringify({ status: "ok" }),
