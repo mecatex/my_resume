@@ -44,7 +44,7 @@ document.addEventListener('submit', function (event) {
 
     event.preventDefault();
 
-    fetch('http://localhost:8888/.netlify/functions/contact', {
+    fetch('.netlify/functions/contact', {
         method: 'POST',
         body: JSON.stringify(serializeForm(event.target)),
 		headers: {
