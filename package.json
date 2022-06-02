@@ -1,0 +1,23 @@
+{
+  "name": "cv_projet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mecatex/my_resume.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mecatex/my_resume/issues"
+  },
+  "homepage": "https://github.com/mecatex/my_resume#readme",
+  "dependencies": {
+    "nodemailer": "^6.7.5",
+    "nodemailer-mailjet-transport": "^1.0.4"
+  }
+}
