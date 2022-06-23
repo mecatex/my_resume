@@ -1,7 +1,15 @@
 const dotenv = require('dotenv')
 dotenv.config()
 const nodemailer = require('nodemailer')
+var date = new Date()
+const { Pool, Client } = require('pg')
+const pool = new Pool({
+  connectionString: process.env.PG_URL,
+});
+const text = 'INSERT INTO contact_request(mail, name, phone, message, date) VALUES($1, $2, $3, $4, $5) RETURNING *'
+
 const transport = nodemailer.createTransport({
+
   host: "in-v3.mailjet.com",
   port: 587,
   secure: false, // use TLS
@@ -31,6 +39,11 @@ exports.handler = async function (event, context) {
 
   try {
     const info = await transport.sendMail(mailer);
+
+    const values = [mail, name, phone, message, date]
+    const res = await pool.query(text, values)
+    console.log(res.rows[0])
+
     return {
       statusCode: 200,
       body: JSON.stringify({ status: "ok" }),
@@ -42,7 +55,4 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({ err }),
     };
   }
-
-
 }
-

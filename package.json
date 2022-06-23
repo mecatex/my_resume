@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mecatex/my_resume#readme",
   "dependencies": {
     "dotenv": "^16.0.1",
-    "nodemailer": "^6.7.5"
+    "nodemailer": "^6.7.5",
+    "pg": "^8.7.3"
   }
 }
